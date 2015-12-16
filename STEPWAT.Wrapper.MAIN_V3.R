@@ -31,9 +31,6 @@ wrapper.file<-paste(source.dir,"StepWat.Wrapper.Code_V3.R", sep="")
 markov.file<-paste0(source.dir,"Markov.Weather_V2.R")
 
 
-
-
-
 ######## Weather Query Code ##########################################################
 
 ########### Set parameters ##########################################
@@ -57,14 +54,13 @@ deltaFutureToSimStart_yr <- c(50,90)
 # this does not change
 downscaling.method <- c("hybrid-delta")
 
-#This is from Daniel'scode and for some reason not working...
+#This is from Daniel's code
 temp <- climate.conditions[!grepl(climate.ambient, climate.conditions)] #make sure 'climate.ambient' is first entry
 if(length(temp) > 0){
   temp <- paste0(deltaFutureToSimStart_yr, "years.", rep(temp, each=length(deltaFutureToSimStart_yr)))	#add (multiple) deltaFutureToSimStart_yr
   temp <- paste0(downscaling.method, ".", rep(temp, each=length(downscaling.method))) #add (multiple) downscaling.method
 }
 
-# this is the actual code being implemented
 # make a list of all future and current scenarios putting "Current" first	
 climate.conditions <-  c("Current",temp)
 temp<-climate.conditions
