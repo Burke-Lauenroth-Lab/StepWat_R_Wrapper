@@ -31,6 +31,7 @@ wrapper.file<-paste(source.dir,"StepWat.Wrapper.Code_V3.R", sep="")
 markov.file<-paste0(source.dir,"Markov.Weather_V2.R")
 
 
+
 ######## Weather Query Code ##########################################################
 
 ########### Set parameters ##########################################
@@ -75,7 +76,7 @@ sites<-c(45,68,101,70,105,144,155,106,43,51)
 source(query.file)
 ##################
 
-
+############################### End Weather Query Code ################################
 
 
 
@@ -96,7 +97,8 @@ S<-length(sites)
 # number of GCM X RCP X Periods run (number of scenarios run in the query code)
 H<-length(temp)
 
-###### For weather interval assemblies ############
+
+#@@@@@@@@@@@@@@@##### For weather interval assemblies #######@@@@@@@@@@@@#
 # number of years in one section 
 K<-30
 # interval size
@@ -105,24 +107,38 @@ INT<-30
 FIN<-30
 # resampling time
 RE<-FIN/INT
-###################################################
-
 
 #### type ##########################################
 # choose between "basic" (for 1,5,10,30 year); "back" (for 5 year non-driest back-to-back);
 #         OR "drought" (for 5 year non-driest back-to-back and only once in 20 years); or "markov"
 #         (for markov code output) !!!! if using Markov remember to flag it in weathersetup.in !!!!
+   TYPE<-"basic"
 ####################################################
-TYPE<-"markov"
-yr<-30 # number of years to use to create markov file CANNOT be larger than available years in
-       #      the sqlite database!!!!!!!
 
-#####################################################################
-
-
+# if assembling weather data this sources that file
 #####################
 source(assemble.file)
 #####################
+#@@@@@@@@###################################################@@@@@@@@@@@@#
+
+
+##@@@@@@@@@@@@@@################################################@@@@@@@@@@@@@@@##
+###@@@@@@@@@@@@###### MARKOV Weather Generator Code #############@@@@@@@@@@@@@###
+
+# if using the Markov weather generator run the following code instead
+yr<-30 # number of years to use to create markov file CANNOT be larger than available years in
+       #      the sqlite database!!!!!!!
+
+# if using markov weather generator below sources the file that creates the C code inputs
+#####################
+source(markov.file)
+#####################
+
+
+############# End Weather Assembly Code#########################################################
+
+
+
 
 
 
@@ -159,6 +175,7 @@ graz.freq<-c(1,0) # if only using distrubance and not grazing set 'graz.freq<-0'
 source(wrapper.file)
 ####################
 
+################ End Wrapper Code ########################################################
 
 
 
