@@ -129,6 +129,8 @@ source(assemble.file)
 yr<-30 # number of years to use to create markov file CANNOT be larger than available years in
        #      the sqlite database!!!!!!!
 
+TYPE<-"markov"
+
 # if using markov weather generator below sources the file that creates the C code inputs
 #####################
 source(markov.file)
