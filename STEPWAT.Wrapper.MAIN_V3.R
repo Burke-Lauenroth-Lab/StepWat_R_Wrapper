@@ -14,7 +14,6 @@ library(snow)
 library(parallel)
 library(DBI)
 library(RSQLite)
-library(Rsoilwat31)
 
 #### establish cluster #############################################################
 cl<-makeCluster((detectCores()/2))

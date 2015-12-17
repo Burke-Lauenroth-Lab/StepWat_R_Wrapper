@@ -31,7 +31,6 @@ Before running the wrapper the user must have the following folders/files in pla
 
 3) The SQLite database that included the 898 sites used in many Soilwat manuscripts (dbWeatherData_BSE898_FutureEcohydrology_Maurer2002_LLNL10GCMs.sqlite).
 
-4) A copy of RSoilwat installed into R (see below for notes on how to install from github).
 ####################################
 
 ####################################
@@ -41,7 +40,6 @@ LIBRARIES:
 # the following libraries and used to run the wrapper
 
 REQUIRED LIBRARIES:
-Rsoilwat31 - used to query the sqlite database for historical and future daily weather.
 RSQLite -  a dependancy for the Rsoilwat31 library.
 DBI -  a dependancy for the Rsoilwat31 library.
 
@@ -79,29 +77,12 @@ There are currently 7 available ways to assemble weather:
 * Markov - uses historical weather data to create Ômkv_prob.inÕ and Ômkv_covar.in files used in the built-in (into the C code) Markov weather generator.
 ####################################
 
-####################################
-Install RSoilwat from github:
-# change working directory to Desktop
-> cd Desktop
-# clone Rsoilwat from github.com to a folder called Rsoilwat on the Desktop
-> git clone https://github.com/Burke-Lauenroth-Lab/Rsoilwat.git Rsoilwat_v31 
-> cd Rsoilwat_v31/ 
-> git checkout Rsoilwat_v31 
-> git submodule init 
-> git submodule update 
-> cd ..
-# tar the folder Rsoilwat_v31 to Rsoilwat_v31.tar.gz
-> tar -pczf Rsoilwat_v31.tar.gz Rsoilwat_v31
-# run the install of the tar
-> R CMD INSTALL Rsoilwat_v31.tar.gz
-###################################
-
 ###################################
 Install Stepwat from github:
 # change working directory to Desktop
 > cd Desktop
 # clone Stepwat from github.com to a folder called Stepwat on the Desktop
-> git clone https://github.com/Burke-Lauenroth-Lab/StepWat.git Ñ-branch SoilWat31_drs Ñ-single-branch Stepwat 
+> git clone https://github.com/Burke-Lauenroth-Lab/StepWat.git --branch SoilWat31_drs --single-branch Stepwat 
 # change directory into new folder
 > cd Stepwat
 # update the submodule

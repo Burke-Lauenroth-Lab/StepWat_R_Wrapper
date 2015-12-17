@@ -14,7 +14,7 @@
 # because it is the old weather database, the weather data is also in the Rsoilwat v27 format and you need to load the package
 	
 #### connect to the SQLite database ####
-	dbW_setConnection(dbFilePath=dbWeatherDataFile, FALSE)
+
   db<-dbDriver("SQLite")
 	db<-dbConnect(db,"dbWeatherData_BSE898_FutureEcohydrology_Maurer2002_LLNL10GCMs.sqlite")
 	con.env <- NULL
