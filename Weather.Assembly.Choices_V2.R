@@ -366,7 +366,7 @@ for (i in 1:S) { # i = number of sites
     data1L<-sw_weatherList[[i]][[h]] #pull out the list for the site, GCM, and year
     samplelist<-c(data1L,data1L,data1L,data1L,data1L,data1L,data1L,data1L,data1L,data1L)
     year<-1901 #reset year to start at 1901 for everything - makes runnig STEPWAT much easier (no changing input files...)
-    for (t in 1:300) { #t = number of resampled lists (ie 100 years -> t=10 300 years -> t=30)
+    for (t in 1:FIN) { #t = number of resampled lists (ie 100 years -> t=10 300 years -> t=30)
       x<-data.frame(samplelist[[t]]@data) # create a dataframe of the days within the year
       colnames(x)<-c("#DOY","Tmax_C","Tmin_C","PPT_cm") # relabel the columns names 
       rownames(x)<- NULL #make rownames null (need this or else will have an extra column)
