@@ -61,7 +61,7 @@ for (s in sites) { # loop through all the sites
             # change directory to the executable directory
             setwd(paste(directory,"Stepwat.Site.",s,"/testing.sagebrush.MT_drs/Stepwat_Inputs",sep=""))
             # run stepwat
-            system("./stepwat -f files.in -ssxwdebug.in")
+            system("./stepwat    -f  files.in -s -o ../../sw_src/testing/files_step_soilwat.in")
             
             # change directory to "Output" folder
             setwd("Output")
@@ -88,7 +88,7 @@ for (s in sites) { # loop through all the sites
             # change directory to the executable directory
             setwd(paste(directory,"Stepwat.Site.",s,"/testing.sagebrush.MT_drs/Stepwat_Inputs",sep=""))
             # run stepwat
-            system("./stepwat -f files.in -ssxwdebug.in")
+            system("./stepwat    -f  files.in -s -o ../../sw_src/testing/files_step_soilwat.in")
             
             # change directory to "Output" folder
             setwd("Output")
@@ -155,7 +155,7 @@ for (s in sites) { # loop through all the sites
                 # change directory to the executable directory
                 setwd(paste(directory,"Stepwat.Site.",s,"/testing.sagebrush.MT_drs/Stepwat_Inputs",sep=""))
                 # run stepwat
-                system("./stepwat -f files.in -ssxwdebug.in")
+                system("./stepwat    -f  files.in -s -o ../../sw_src/testing/files_step_soilwat.in")
                 
                 # change directory to "Output" folder
                 setwd("Output")
@@ -182,7 +182,7 @@ for (s in sites) { # loop through all the sites
         # change directory to the executable directory
         setwd(paste(directory,"Stepwat.Site.",s,"/testing.sagebrush.MT_drs/Stepwat_Inputs",sep=""))
         # run stepwat
-        system("./stepwat -f files.in -ssxwdebug.in")
+        system("./stepwat    -f  files.in -s -o ../../sw_src/testing/files_step_soilwat.in")
         
         # change directory to "Output" folder
         setwd("Output")
