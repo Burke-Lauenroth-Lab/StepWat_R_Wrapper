@@ -25,15 +25,26 @@ for (s in sites) { # loop through all the sites
       
       # identify the directory the weather will be pasted into        
       weather.dir2<-paste(directory,"Stepwat.Site.",s,"/testing.sagebrush.MT_drs/Stepwat_Inputs/Input/sxw/Input/randomdata/",sep="")
-      
+      weather.dir3<-paste(directory,"Stepwat.Site.",s,"/sw_src/testing/Input/data_39.0625_-119.4375/",sep="")
+
       # copy the weather data into the randomdata folder
       if (TYPE=="basic" || TYPE=="drought" || TYPE=="back") {
         # copy the weather data into the randomdata folder
         system(paste("cp -a ",weath.read,"/. ",weather.dir2,sep=""))
         } else
-      if (TYPE=="markov") {
+      if (TYPE2=="markov") {
         system(paste("cp ",weath.read,"/mkv_covar.in ",weather.dir2,sep=""))
         system(paste("cp ",weath.read,"/mkv_prob.in ",weather.dir2,sep=""))
+      }
+      
+      # copy the weather data into the data_39.0625_-199.4375 folder
+      if (TYPE=="basic" || TYPE=="drought" || TYPE=="back") {
+          # copy the weather data into the data_39.0625_-199.4375 folder
+          system(paste("cp -a ",weath.read,"/. ",weather.dir3,sep=""))
+      } else
+      if (TYPE2=="markov") {
+          system(paste("cp ",weath.read,"/mkv_covar.in ",weather.dir3,sep=""))
+          system(paste("cp ",weath.read,"/mkv_prob.in ",weather.dir3,sep=""))
       }
       
       if (dist.graz.flag == T) {
@@ -109,17 +120,27 @@ for (s in sites) { # loop through all the sites
           
           # identify the directory the weather will be pasted into        
           weather.dir2<-paste(directory,"Stepwat.Site.",s,"/testing.sagebrush.MT_drs/Stepwat_Inputs/Input/sxw/Input/randomdata/",sep="")
-          
+          weather.dir3<-paste(directory,"Stepwat.Site.",s,"/sw_src/testing/Input/data_39.0625_-119.4375/",sep="")
+
           # copy the weather data into the randomdata folder
           if (TYPE=="basic" || TYPE=="drought" || TYPE=="back") {
             # copy the weather data into the randomdata folder
             system(paste("cp -a ",weath.read,"/. ",weather.dir2,sep=""))
             } else
-              if (TYPE=="markov") {
+              if (TYPE2=="markov") {
                 system(paste("cp ",weath.read,"/mkv_covar.in ",weather.dir2,sep=""))
                 system(paste("cp ",weath.read,"/mkv_prob.in ",weather.dir2,sep=""))
               }
           
+          # copy the weather data into the data_39.0625_-199.4375 folder
+              if (TYPE=="basic" || TYPE=="drought" || TYPE=="back") {
+                  # copy the weather data into the data_39.0625_-199.4375 folder
+                  system(paste("cp -a ",weath.read,"/. ",weather.dir3,sep=""))
+              } else
+              if (TYPE2=="markov") {
+                  system(paste("cp ",weath.read,"/mkv_covar.in ",weather.dir3,sep=""))
+                  system(paste("cp ",weath.read,"/mkv_prob.in ",weather.dir3,sep=""))
+              }
           if (dist.graz.flag == T) {
             for (dst in dist.freq) {
               for (grz in graz.freq) {
