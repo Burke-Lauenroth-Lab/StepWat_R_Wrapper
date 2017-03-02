@@ -98,14 +98,16 @@ for ( i in 1:365) { #for each day
         tmin.c.d<-vector()
         for (g in 1:yr) { #within each year
                 ppt<-df.list[[g]]$PPT_cm[which(df.list[[g]]$DOY==i)] #extract daily PPT values
+                if (ppt >0) {
                 avg.ppt<-append(avg.ppt,ppt) #append them to vectors
                 sd.ppt<-append(sd.ppt,ppt)
+                }
                 max<-df.list[[g]]$Tmax_C[which(df.list[[g]]$DOY==i)]#extract max temp for the day for each year
-                maxw<-df.list[[g]]$Tmax_C[which(df.list[[g]]$DOY==1 & df.list[[g]]$WET==TRUE)]# extract max temp for all wet days
-                maxd<-df.list[[g]]$Tmax_C[which(df.list[[g]]$DOY==1 & df.list[[g]]$WET==FALSE)]# extract max temp for all dry days
+                maxw<-df.list[[g]]$Tmax_C[which(df.list[[g]]$DOY==i & df.list[[g]]$WET==TRUE)]# extract max temp for all wet days
+                maxd<-df.list[[g]]$Tmax_C[which(df.list[[g]]$DOY==i & df.list[[g]]$WET==FALSE)]# extract max temp for all dry days
                 min<-df.list[[g]]$Tmin_C[which(df.list[[g]]$DOY==i)] #extract min temp for the day for each year
-                minw<-df.list[[g]]$Tmin_C[which(df.list[[g]]$DOY==1 & df.list[[g]]$WET==TRUE)]# extract min temp for all wet days
-                mind<-df.list[[g]]$Tmin_C[which(df.list[[g]]$DOY==1 & df.list[[g]]$WET==FALSE)]# extract min temp for all dry days
+                minw<-df.list[[g]]$Tmin_C[which(df.list[[g]]$DOY==i & df.list[[g]]$WET==TRUE)]# extract min temp for all wet days
+                mind<-df.list[[g]]$Tmin_C[which(df.list[[g]]$DOY==i & df.list[[g]]$WET==FALSE)]# extract min temp for all dry days
                 tmax.c<-append(tmax.c,max) # append to vector
                 tmin.c<-append(tmin.c,min) # append to vector
                 tmax.c.w<-append(tmax.c.w,maxw) # append to vector
@@ -135,19 +137,24 @@ for ( i in 1:365) { #for each day
         tmin.c.d<-tmin.c.d + 273.15
         
          CF.max.w<-(abs(mean(tmax.c.w)/mean(tmax.c))) + (mean(tmax.c.w)-mean(tmax.c))/mean(tmax.c)
+         if (CF.max.w=='NaN'){CF.max.w<-1}
          if (CF.max.w > 1.0) {CF.max.w<-1}
          CF.max.d<-(abs(mean(tmax.c.d)/mean(tmax.c))) + (mean(tmax.c.d)-mean(tmax.c))/mean(tmax.c)
+         if (CF.max.d=='NaN'){CF.max.d<-1}
          if (CF.max.d < 1.0) {CF.max.d<-1}
          CF.min.w<-(abs(mean(tmin.c.w)/mean(tmin.c))) + (mean(tmin.c.w)-mean(tmin.c))/mean(tmin.c)
+         if (CF.min.w=='NaN'){CF.min.w<-1}
          if (CF.min.w > 1.0) {CF.min.w<-1}
          CF.min.d<-(abs(mean(tmin.c.d)/mean(tmin.c))) + (mean(tmin.c.d)-mean(tmin.c))/mean(tmin.c)
+         if (CF.min.d=='NaN'){CF.min.d<-1}
          if (CF.min.d < 1.0) {CF.min.d<-1}
         
         
           DF.DAY$W_W[i]<-sum(prob.wet_wet) #sum all of the wet given wet days for the day across all the years
           DF.DAY$W_D[i]<-sum(prob.wet_dry) #sum all of the wet given dry days for the day across all the years
           DF$avg.ppt[i]<-mean(avg.ppt) #average the ppt across all the years for that day
-          DF$sd.ppt[i]<-(sd(sd.ppt)*2)
+          if(length(sd.ppt) < 2) {DF$sd.ppt[i]<-0.0}
+          else {DF$sd.ppt[i]<-(sd(sd.ppt)}
           DF$CF.max.w[i]<-CF.max.w
           DF$CF.max.d[i]<-CF.max.d
           DF$CF.min.w[i]<-CF.min.w
